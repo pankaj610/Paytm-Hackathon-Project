@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<script>
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  var long = document.getElementById("id_long");
+  var lat = document.getElementById("id_lat");
+
+  long.value=position.coords.longitude;
+  // long.value=position.coords.longitude;
+  lat.value=position.coords.latitude;
+
+  // console.log(position.coords.latitude);
+  // console.log(position.coords.longitude);
+}
+</script>
+
+  <form method="post" >
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" onclick="getLocation()">Sign up</button>
+  </form>
+  <button onclick="getLocation()">Set Location</button>
+
+
+{% endblock %}
