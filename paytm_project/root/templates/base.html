@@ -8,6 +8,8 @@
   <body>
     <header>
       <h1>This is Header</h1>
+      <a href="{% url 'root:login' %}">Login</a>
+      <a href="{% url 'root:register' %}">Register</a>
     </header>
     <main>
       {% block content %}

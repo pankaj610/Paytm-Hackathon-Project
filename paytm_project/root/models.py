@@ -14,7 +14,7 @@ class SignUp(models.Model):
     user_type = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
     def __str__(self):
-        r=str(self.rollno)
+        r=str(self.name)
         return r
 
 

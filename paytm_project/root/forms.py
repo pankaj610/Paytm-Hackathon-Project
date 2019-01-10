@@ -37,3 +37,8 @@ class BookAmbulanceForm(forms.ModelForm):
         widget={
             'patient_name':forms.TextInput(attrs={'class':'form-control mb-2 mr-sm-2','placeholder':'Enter Patient Name'}),
         }
+
+class LoginForm(forms.Form):
+    user_type = forms.ChoiceField(widget=forms.Select(attrs={'class':'form-control'}),choices=USER_CHOICES,required=True)
+    aadhar = forms.IntegerField(widget = forms.NumberInput(attrs={'class':'form-control mb-2 mr-sm-2','placeholder':'Enter Your 16 digit Aadhar Number'}), required=True)
+    password = forms.CharField(widget = forms.PasswordInput(attrs={'class':'form-control mb-2 mr-sm-2','placeholder':'Enter Password'}),required=True)
