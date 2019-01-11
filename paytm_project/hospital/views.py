@@ -21,3 +21,11 @@ def doctor_detail(request,id,slug):
         'doctor':doctor
     }
     return render(request,'detail.html',context)
+
+
+def ambulance_detail(request,id,slug):
+    ambulance=get_object_or_404(Ambulance,id=id,slug=slug)
+    context={
+        'ambulance':ambulance
+    }
+    return render(request,'ambulance_detail.html',context)

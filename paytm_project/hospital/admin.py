@@ -14,7 +14,13 @@ class DoctorAdmin(admin.ModelAdmin):
     list_editable = ['available']
     prepopulated_fields = {'slug':('name',)}
 
+class AmbulanceAdmin(admin.ModelAdmin):
+    list_display = ['driver_name', 'slug', 'ambulance_no', 'phoneno', 'available']
+    list_filter = ['available']
+    list_editable = ['available']
+    prepopulated_fields = {'slug':('driver_name',)}
+
 
 admin.site.register(Hospital, HospitalAdmin)
-
 admin.site.register(Doctor, DoctorAdmin)
+admin.site.register(Ambulance, AmbulanceAdmin)

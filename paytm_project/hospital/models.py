@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 # Create your models here.
 
 class Hospital(models.Model):
@@ -7,8 +7,6 @@ class Hospital(models.Model):
     slug = models.SlugField(max_length=150, db_index = True)
     long = models.DecimalField(max_digits=50, decimal_places=20)
     lat = models.DecimalField(max_digits=50, decimal_places=20)
-
-
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
@@ -21,7 +19,7 @@ class Hospital(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('hospital:hospital_list_by_category',args = [self.slug])
+        return reverse('hospital:doctor_list_by_category',args = [self.slug])
 
 
 class Doctor(models.Model):
@@ -44,3 +42,23 @@ class Doctor(models.Model):
 
     def get_absolute_url(self):
         return reverse('hospital:doctor_detail', args=[self.id,self.slug])
+
+
+
+class Ambulance(models.Model):
+    hospital = models.ForeignKey(Hospital,  on_delete = models.CASCADE)
+    driver_name = models.CharField(max_length = 100, db_index = True)
+    ambulance_no = models.CharField(max_length = 100, db_index = True)
+    slug = models.SlugField(max_length = 150, db_index = True)
+    available = models.BooleanField(blank = True)
+    phoneno = models.DecimalField(max_digits= 10, decimal_places=2)
+
+    class Meta:
+        ordering = ('driver_name',)
+        index_together = (('slug'),)
+
+    def __str__(self):
+        return self.driver_name
+
+    def get_absolute_url(self):
+        return reverse('hospital:ambulance_detail', args=[self.id,self.slug])
