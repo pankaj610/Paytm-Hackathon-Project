@@ -19,7 +19,7 @@ class SignUp(models.Model):
 
 
 class BookAmbulance(models.Model):
-    patient_name = models.CharField(max_length=50)
+    # patient_name = models.CharField(max_length=50)
     accident_location_picture = models.ImageField(upload_to = 'accidents/%Y/%m/%d', blank = True)
     long = models.DecimalField(max_digits=50, decimal_places=20)
     lat = models.DecimalField(max_digits=50, decimal_places=20)

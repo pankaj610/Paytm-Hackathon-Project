@@ -26,18 +26,21 @@ def bookAmbulance(request):
         if form.is_valid():
             form.save()
             return HttpResponse("<html><script>alert('Your information send to nearby hospital.');window.location = '/root/';</script></html>")
-    else:
-        ambulance = forms.BookAmbulanceForm()
+    ambulance = forms.BookAmbulanceForm()
     return render(request, 'bookambulance.html',{'form':ambulance})
 
 def login(request):
     if request.method == 'POST':
         user = get_object_or_404(models.SignUp,aadhar=str(request.POST['aadhar']), user_type=str(request.POST['user_type']), password=str(request.POST['password']))
+        request.session['aadhar'] = user.aadhar
         if user.user_type=="ambulance":
+            request.session['user_type'] = "ambulance"
             return HttpResponseRedirect('/ambulance/')
         elif user.user_type=="hospital":
+            request.session['user_type'] = "hospital"
             return HttpResponseRedirect('/hospital/')
         elif user.user_type=="patient":
+            request.session['user_type'] = "patient"
             return HttpResponseRedirect('/user/')
 
     loginform = forms.LoginForm()

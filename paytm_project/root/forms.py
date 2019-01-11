@@ -33,10 +33,8 @@ class BookAmbulanceForm(forms.ModelForm):
     # dob = forms.DateField(widget=forms.DateInput(attrs={'class':'form-control mb-2 mr-sm-2','type': 'date'}),required=True)
     class Meta:
         model= models.BookAmbulance
-        fields=['patient_name','accident_location_picture','long','lat']
-        widget={
-            'patient_name':forms.TextInput(attrs={'class':'form-control mb-2 mr-sm-2','placeholder':'Enter Patient Name'}),
-        }
+        fields=['accident_location_picture','long','lat']
+
 
 class LoginForm(forms.Form):
     user_type = forms.ChoiceField(widget=forms.Select(attrs={'class':'form-control'}),choices=USER_CHOICES,required=True)

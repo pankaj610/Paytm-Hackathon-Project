@@ -22,6 +22,6 @@ urlpatterns = [
     # path('ambulance/',include('ambulance.urls')),
     # path('hospital/',include('hospital.urls')),
     path('root/',include('root.urls')),
-    # path('user/',include('user.urls')),
+    path('hospital/',include('hospital.urls')),
 
 ]
